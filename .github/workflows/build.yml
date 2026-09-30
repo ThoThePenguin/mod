@@ -20,12 +20,11 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
 
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
 
-      - name: Execute Gradle Build
-        run: gradle build --no-daemon
-        continue-on-error: true
+      - name: Build Mod with Gradle
+        run: ./gradlew build --no-daemon
 
       - name: Upload Built Jar
         uses: actions/upload-artifact@v4
